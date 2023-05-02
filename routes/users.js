@@ -22,7 +22,7 @@ router.post('/login', async (req, res) => {
 });
 
 // Register controller
-router.post('/register', async (req, res) => {
+router.post('/sign-up', async (req, res) => {
   const { phoneNumber, password, otpCode } = req.body;
 
   const existingUser = await User.findOne({ phoneNumber });
@@ -42,7 +42,7 @@ router.post('/register', async (req, res) => {
 });
 
 // OTP creation controller
-router.post('/otp', async (req, res) => {
+router.post('/send-otp', async (req, res) => {
   const { phoneNumber } = req.body;
   // Create new OTP for user
   const newOtp = new otp({ phone_number: phoneNumber });
@@ -86,7 +86,7 @@ router.post('/otp', async (req, res) => {
 });
 
 // Forgot password controller
-router.post('/forgotPassword', async (req, res) => {
+router.post('/forgot-password', async (req, res) => {
   const { phoneNumber, otpCode, newPassword } = req.body;
   const existingUser = await User.findOne({ phoneNumber });
   if (!existingUser) {
