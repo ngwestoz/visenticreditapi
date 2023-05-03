@@ -9,6 +9,26 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  email: {
+    type: String,
+    default: ''
+  },
+  gender: {
+    type: String,
+    default: ''
+  },
+  dateOfBirth: {
+    type: String,
+    default: ''
+  },
+  region: {
+    type: String,
+    default: ''
+  },
+  nidaNumber: {
+    type: String,
+    default: ''
+  },
   phoneNumber: {
     type: String,
     required: true,

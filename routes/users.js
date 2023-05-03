@@ -18,7 +18,7 @@ router.post('/login', async (req, res) => {
     return res.status(401).json({ message: 'Invalid phone number or password' });
   }
   // Successful login
-  return res.status(200).json({ message: 'Login successful' });
+  return res.status(200).json({ message: 'Login successful', user });
 });
 
 // Register controller
