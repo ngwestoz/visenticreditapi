@@ -1,6 +1,11 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); 
 
 const userSchema = new mongoose.Schema({
+  phoneNumber: {
+    type: String,
+    required: true,
+    unique: true, 
+  },
   firstName: {
     type: String,
     default: ''
@@ -11,62 +16,31 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
+    unique: true,
     default: ''
   },
   gender: {
     type: String,
     default: ''
   },
-  dateOfBirth: {
+  dob: {
+    type: Date,
+    default: ''
+  },
+  country: {
     type: String,
     default: ''
   },
-  region: {
-    type: String,
+  idNum: {
+    type: Number,
     default: ''
-  },
-  nidaNumber: {
-    type: String,
-    default: ''
-  },
-  phoneNumber: {
-    type: String,
-    required: true,
-    unique: true,
-    match: /^(\+255)\d{9}$/ // Ensure phone number matches the format +255XXXXXXXXX
   },
   password: {
     type: String,
-    required: true,
-    minlength: 4
-  }
-});
-
-const otpSchema = mongoose.Schema(
-  {
-    phone_number: {
-      type: String,
-      required: true
-    },
-    otp: {
-      type: Number,
-      default: () => Math.floor(100000 + Math.random() * 900000)
-    },
-    isVerified: {
-      type: Boolean,
-      default: false
-    },
-    expiredAt: {
-      type: Date,
-      default: () => Date.now() + 5 * 60 * 1000
-    }
+    required: true, 
   },
-  {
-    timestamps: true
-  }
-);
-
-const otp = mongoose.model('otps', otpSchema);
+});
+ 
 const User = mongoose.model('User', userSchema);
 
-module.exports = { User, otp };
+module.exports = { User };

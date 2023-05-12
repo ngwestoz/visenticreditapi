@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose'); //require mongoose library functionality
 const morgan = require('morgan'); // better debugging
+ 
 
 const cors = require('cors');
 // allow using a .env file
@@ -16,6 +17,7 @@ app.use(
   })
 );
 
+mongoose.set('strictQuery', false);
 // sets up mongoose for the mongoDB connection
 mongoose
   .connect(process.env.MONGO_URL)
@@ -26,18 +28,21 @@ mongoose
     console.error('Mongo Connection Error', err);
   });
 
+
 // declare port number for the api
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 // setup and access request body
 app.use(express.json());
+app.set("view engine", "ejs");
 app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }));
 
 // setup middle ware for routes
 app.use('/users', require('./routes/users'));
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`);
+  console.log(`Server listening on http://127.0.0.1:${PORT}`);
 });
 
 // error handler

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password</title>
+    <script>
+        const status = `<%-status%>`; 
+        if(status == "Verified")
+        { 
+            window.location.href = "https://www.visenticredit.com/";
+        } 
+    </script>
+</head>
+<body style="margin: 35px;">
+    <h3>Reset Password</h3>
+    <p><%= email %></p>
+    <form action="" method="POST"> 
+        <input style="margin: 5px;" type="password" name="password" minlength="4" id="password" class="input-text" placeholder="Enter Password"  required> <br>
+        <input style="margin: 5px;" type="password" name="confirmPassword" minlength="4" id="confirm-password" class="input-text" placeholder="Confirm Password" required>  <br>  
+        <input style="margin: 5px;" type="submit" value="Reset Password"> 
+    </form>
+</body>
+</html>
